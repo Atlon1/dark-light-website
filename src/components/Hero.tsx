@@ -8,33 +8,32 @@ const Hero = () => {
 
     const [theme, setTeheme] = useState('light')
 
-    useEffect(()=> {
-        if(localStorage.getItem('theme') === null){
+    useEffect(() => {
+        if (localStorage.getItem('theme') === null) {
             localStorage.setItem('theme', 'light')
         }
-    },[])
+    }, [])
 
-    useEffect(()=> {
-        const html : any = document.querySelector('html')
-        if (localStorage.getItem('theme') === 'dark'){
+    useEffect(() => {
+        const html: any = document.querySelector('html')
+        if (localStorage.getItem('theme') === 'dark') {
             html.classList.add('dark')
             setTeheme('dark')
         } else {
             html.classList.remove('dark')
             setTeheme('light')
         }
-    },[theme])
-
+    }, [theme])
 
 
     const handleSwitch = () => {
-       if (localStorage.getItem('theme') === 'light'){
-           setTeheme('dark');
-           localStorage.setItem('theme', 'dark')
-       } else {
-           setTeheme('light')
-           localStorage.setItem('theme', 'light')
-       }
+        if (localStorage.getItem('theme') === 'light') {
+            setTeheme('dark');
+            localStorage.setItem('theme', 'dark')
+        } else {
+            setTeheme('light')
+            localStorage.setItem('theme', 'light')
+        }
     }
 
 
@@ -45,7 +44,8 @@ const Hero = () => {
                 <header className='flex items-center justify-between py-8 '>
                     <div>
                         <a href='#'>
-                           {theme === 'light' ? (<img alt='LogoDark' src={LogoDark}/> ) : (<img alt='LogoWhite' src={LogoWhite}/> )}
+                            {theme === 'light' ? (<img alt='LogoDark' src={LogoDark}/>) : (
+                                <img alt='LogoWhite' src={LogoWhite}/>)}
                         </a>
                     </div>
                     <button
@@ -54,13 +54,38 @@ const Hero = () => {
                         {theme === 'light' ? <BsMoonFill/> : <BsFillSunFill/>}
                     </button>
                 </header>
-                <div>
-
+                <div className='flex flex-col items-center lg:flex-row min-h-[740px]'>
+                    <div className='flex-1 flex flex-col justify-center items-start'>
+                        <h1 className=' text-5xl text-primary font-bold mb-6 leading-[60px] dark:text-white'>
+                            Online Accounting
+                            <br/><span className='text-accent'>
+                            Fast & Uncomplicated
+                        </span></h1>
+                        <p className='font-light text-gray mb-12 max-w-[597px] dark:text-white'>
+                            We specialize in small businesses. Our goale is to eleminate bureaucracy, creating a modern
+                            relationship between your company and the accountant.
+                        </p>
+                        <div className='flex flex-col gap-y-6 mb-12'>
+                            <div className='flex items-center gap-x-2'>
+                                <div className='bg-accent/10 text-accent w-[20px] h-[20px] rounded-full flex justify-center items-center dark:bg-accent/70 dark:text-white'>
+                                    <BsCheck/>
+                                </div>
+                                <p className='text-base font-light dark:text-white'>Have your acdounting 100% online.</p>
+                            </div>
+                            <div className='flex items-center gap-x-2'>
+                                <div className='bg-accent/10 text-accent w-[20px] h-[20px] rounded-full flex justify-center items-center dark:bg-accent/70 dark:text-white'>
+                                    <BsCheck/>
+                                </div>
+                                <p className='text-base font-light dark:text-white'>Save with plans starting at $10/mounth.</p>
+                            </div>
+                        </div>
+                        <button className='btn'>Discover our plans.</button>
+                    </div>
+                    <div className='hidden lg:flex self-end'>
+                        <img src={Girl} alt='Girl'/>
+                    </div>
                 </div>
-
             </div>
-
-
         </section>
     );
 };
