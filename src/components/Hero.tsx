@@ -8,20 +8,42 @@ const Hero = () => {
 
     const [theme, setTeheme] = useState('light')
 
+    useEffect(()=> {
+        if(localStorage.getItem('theme') === null){
+            localStorage.setItem('theme', 'light')
+        }
+    },[])
+
+    useEffect(()=> {
+        const html : any = document.querySelector('html')
+        if (localStorage.getItem('theme') === 'dark'){
+            html.classList.add('dark')
+            setTeheme('dark')
+        } else {
+            html.classList.remove('dark')
+            setTeheme('light')
+        }
+    },[theme])
+
+
 
     const handleSwitch = () => {
-        const html : any = document.querySelector('html')
-        if (theme === "light"){
-            setTeheme('dark')
-            html.classList.add('dark')
-        }
+       if (localStorage.getItem('theme') === 'light'){
+           setTeheme('dark');
+           localStorage.setItem('theme', 'dark')
+       } else {
+           setTeheme('light')
+           localStorage.setItem('theme', 'light')
+       }
     }
 
 
     return (
         <section
             className='min-h-[740px] w-full bg-heroLight bg-cover bg-center bg-no-repeat overflow-hidden dark:bg-heroDark'>
-            <button className='p-4 bg-accent text-white rounded-full w-12 h-12 flex justify-center items-center'>
+            <button
+                onClick={handleSwitch}
+                className='p-4 bg-accent text-white rounded-full w-12 h-12 flex justify-center items-center'>
                 {theme === 'light' ? <BsMoonFill/> : <BsFillSunFill/>}
             </button>
         </section>
