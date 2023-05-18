@@ -41,11 +41,26 @@ const Hero = () => {
     return (
         <section
             className='min-h-[740px] w-full bg-heroLight bg-cover bg-center bg-no-repeat overflow-hidden dark:bg-heroDark'>
-            <button
-                onClick={handleSwitch}
-                className='p-4 bg-accent text-white rounded-full w-12 h-12 flex justify-center items-center'>
-                {theme === 'light' ? <BsMoonFill/> : <BsFillSunFill/>}
-            </button>
+            <div className=' container mx-auto px-4 lg:px-0'>
+                <header className='flex items-center justify-between py-8 '>
+                    <div>
+                        <a href='#'>
+                           {theme === 'light' ? (<img alt='LogoDark' src={LogoDark}/> ) : (<img alt='LogoWhite' src={LogoWhite}/> )}
+                        </a>
+                    </div>
+                    <button
+                        onClick={handleSwitch}
+                        className='p-4 bg-accent text-white rounded-full w-12 h-12 flex justify-center items-center'>
+                        {theme === 'light' ? <BsMoonFill/> : <BsFillSunFill/>}
+                    </button>
+                </header>
+                <div>
+
+                </div>
+
+            </div>
+
+
         </section>
     );
 };
